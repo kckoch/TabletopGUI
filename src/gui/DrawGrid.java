@@ -9,9 +9,6 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.PickResult;
 import javafx.scene.layout.Pane;
@@ -28,6 +25,7 @@ public final class DrawGrid extends Pane {
     double height;
     Cell[][] cells;
     boolean showHoverCursor = true;
+    GridLocation mouseDownLoc = new GridLocation();
 
     public DrawGrid( int columns, int rows, double width, double height) {
         this.columns = columns;
@@ -94,11 +92,12 @@ public final class DrawGrid extends Pane {
     private class Cell extends StackPane {
         int column;
         int row;
+        boolean highlighted;
 
         public Cell(int column, int row) {
             this.column = column;
             this.row = row;
-            
+            highlighted = false;
             getStyleClass().add("grid-cell");
         }
 
@@ -107,10 +106,13 @@ public final class DrawGrid extends Pane {
             getStyleClass().remove("grid-cell-highlight");
             // add style
             getStyleClass().add("grid-cell-highlight");
+            highlighted = true;
         }
 
         public void unhighlight() {
-            getStyleClass().remove("grid-cell-highlight");
+            //getStyleClass().remove("grid-cell-highlight");
+            getStyleClass().add("grid-cell");
+            highlighted = false;
         }
 
         public void hoverHighlight() {
@@ -131,7 +133,6 @@ public final class DrawGrid extends Pane {
     }
 
     public class MouseGestures {
-
         public void makePaintable( Node node) {
             // that's all there is needed for hovering, the other code is just for painting
             if( showHoverCursor) {
@@ -146,7 +147,6 @@ public final class DrawGrid extends Pane {
                     }
                 });
             }
-
             node.setOnMousePressed( onMousePressedEventHandler);
             node.setOnDragDetected( onDragDetectedEventHandler);
             node.setOnMouseDragEntered(onMouseDragEnteredEventHandler);
@@ -155,11 +155,10 @@ public final class DrawGrid extends Pane {
 
         EventHandler<MouseEvent> onMousePressedEventHandler = event -> {
             Cell cell = (Cell) event.getSource();
-            if( event.isPrimaryButtonDown()) {
-                cell.highlight();
-            } else if( event.isSecondaryButtonDown()) {
+            if(cell.highlighted)
                 cell.unhighlight();
-            }
+            else
+                cell.highlight();
         };
 
         EventHandler<MouseEvent> onMouseDraggedEventHandler = event -> {
@@ -168,11 +167,10 @@ public final class DrawGrid extends Pane {
 
             if( node instanceof Cell) {
                 Cell cell = (Cell) node;
-                if( event.isPrimaryButtonDown()) {
-                    cell.highlight();
-                } else if( event.isSecondaryButtonDown()) {
+                if(cell.highlighted)
                     cell.unhighlight();
-                }
+                else
+                    cell.highlight();
             }
         };
 
@@ -186,11 +184,14 @@ public final class DrawGrid extends Pane {
 
         EventHandler<MouseEvent> onMouseDragEnteredEventHandler = event -> {
             Cell cell = (Cell) event.getSource();
-            if( event.isPrimaryButtonDown()) {
-                cell.highlight();
-            } else if( event.isSecondaryButtonDown()) {
+            if(cell.highlighted)
                 cell.unhighlight();
-            }
+            else
+                cell.highlight();
         };
+    }
+    
+    private static class GridLocation {
+        int x, y ;
     }
 }

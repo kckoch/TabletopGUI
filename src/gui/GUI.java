@@ -7,14 +7,11 @@ package gui;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.*;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import javafx.scene.text.*;
 import javafx.stage.Stage;
 import javafx.stage.Screen;
 
@@ -65,13 +62,23 @@ public class GUI extends Application {
         stage.setHeight(HEIGHT);
     }
     
-    public Button makeButton() {
+    public Button confirmButton() {
         Button butt = new Button();
-        butt.setText("Say 'Hello World'");
+        butt.setText("Generate");
         butt.setOnAction((ActionEvent event) -> {
             System.out.println("Hello World!");
         });
-        GridPane.setConstraints(butt, 10, 6);
+        GridPane.setConstraints(butt, 20, 6);
+        return butt;
+    }
+    
+    public Button randButton() {
+        Button butt = new Button();
+        butt.setText("Random");
+        butt.setOnAction((ActionEvent event) -> {
+            System.out.println("Hello World!");
+        });
+        GridPane.setConstraints(butt, 20, 6);
         return butt;
     }
     
@@ -209,6 +216,14 @@ public class GUI extends Application {
             ));
         dedends.setValue("Some");
         pane.add(dedends, 1, 15);
+        
+        //-------------------------confirmButton
+        Button butt = confirmButton();
+        pane.add(butt, 0, 16);
+        
+        //-------------------------randButton
+        Button randbutt = randButton();
+        pane.add(randbutt, 1, 16);
         
         return pane;
     }

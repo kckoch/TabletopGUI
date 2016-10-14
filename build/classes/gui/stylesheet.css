@@ -7,17 +7,16 @@ and open the template in the editor.
     Created on : Oct 14, 2016, 11:19:48 AM
     Author     : Scrublord
 */
-
 .grid-background {
     -fx-background-color: dimgray;
 }
 .grid-cell {
     -fx-background-color: black;
-    -fx-border-color: white;
     -fx-border-width: .3px;
 }
 .grid-cell-highlight {
     -fx-background-color:white;
+    -fx-border-color: black;
 }
 .grid-cell-hover-highlight {
     -fx-background-color:lightgrey;
