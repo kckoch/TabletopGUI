@@ -3,18 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gui;
+package source;
+//import gui.GUI;
 
-
-/**
- *
- * @author Scrublord
- */
 public class Main {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        GUI.launch(args);
+    public static void main(String[] args) throws Exception {
+        Dungeon dung = new Dungeon("image.png");
+        System.out.println(dung);
     }
 }
