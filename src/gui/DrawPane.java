@@ -8,8 +8,11 @@ package gui;
 import controller.DrawPaneController;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import source.Corridor;
 import source.Dungeon;
@@ -28,19 +31,35 @@ public class DrawPane {
     }
     
     public void drawRooms(){
-        int size = control.getNumberRooms();
+        int size = control.getNumberCorr();
+        for(int i = 0; i < size; i++) {
+            Corridor cr = control.getCorr(i);
+            addCorr(cr.getX(), cr.getY(), cr.getWidth(), cr.getHeight(), i);
+        }
+        size = control.getNumberRooms();
         for(int i = 0; i < size; i++) {
             Room rm = control.getRoom(i);
             addRoom(rm.getX(), rm.getY(), rm.getWidth(), rm.getHeight(), i);
         }
-        size = control.getNumberCorr();
-        for(int i = 0; i < size; i++) {
-            Corridor cr = control.getCorr(i);
-            addCorr(cr.getX(), cr.getY(), cr.getWidth(), cr.getHeight());
-        }
     }
     
     public void addRoom(int x, int y, int width, int height, int ndx) {
+        BorderPane room = new BorderPane();
+        room.setPrefSize(width, height);
+        room.relocate(x, y);
+        room.getStyleClass().add("room-background");
+        room.setOnMouseClicked(new EventHandler<MouseEvent> () {
+           @Override
+           public void handle(MouseEvent t) {
+               System.out.println(ndx);
+           }
+        });
+        Label lbl = new Label(Integer.toString(ndx));
+        lbl.getStyleClass().add("room-label-text");
+        room.setCenter(lbl);
+        pane.getChildren().add(room);
+    }
+    public void addCorr(int x, int y, int width, int height, int ndx) {
         Pane room = new Pane();
         room.setPrefSize(width, height);
         room.relocate(x, y);
@@ -51,13 +70,6 @@ public class DrawPane {
                System.out.println(ndx);
            }
         });
-        pane.getChildren().add(room);
-    }
-    public void addCorr(int x, int y, int width, int height) {
-        Pane room = new Pane();
-        room.setPrefSize(width, height);
-        room.relocate(x, y);
-        room.getStyleClass().add("room-background");
         pane.getChildren().add(room);
     }
     

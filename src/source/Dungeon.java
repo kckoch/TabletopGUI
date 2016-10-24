@@ -16,7 +16,7 @@ public class Dungeon {
     BufferedImage img;
     ArrayList<Room> rooms;
     ArrayList<Corridor> corrs;
-    static final Color ROOMCOLOR = new Color(136,136,136); 
+    static final Color ROOMCOLOR = new Color(136,136,136);
     public Dungeon(String filename) {
         try {
             img = ImageIO.read(Dungeon.class.getResource(filename));
@@ -53,15 +53,15 @@ public class Dungeon {
         Color c;
         for(int x = xcoord; x < img.getWidth(); x++) {
             c = new Color(img.getRGB(x, ycoord));
-            if(c.equals(ROOMCOLOR)) {
-                width++;
-            } else {
+            if(c.equals(Color.BLACK)) {
                 x = img.getWidth();
+            } else {
+                width++;
             }
         }
         for(int y = ycoord; y < img.getHeight(); y++) {
             c = new Color(img.getRGB(xcoord, y));
-            if(!c.equals(ROOMCOLOR))
+            if(c.equals(Color.BLACK))
                 y = img.getHeight();
             else
                 height++;
@@ -73,7 +73,7 @@ public class Dungeon {
     
     private Room alreadyRoom(int x, int y) {
         for(Room room : rooms) {
-            if(x >= room.getX() && x <= room.getX() + room.getWidth() && y >= room.getY() && y <= room.getY() + room.getHeight())
+            if(x >= room.getX() && x < room.getX() + room.getWidth() && y >= room.getY() && y < room.getY() + room.getHeight())
                 return room;
         }
         return null;

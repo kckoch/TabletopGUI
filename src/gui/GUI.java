@@ -79,41 +79,24 @@ public class GUI extends Application {
         return menuBar;
     }
     
-    public GridPane createMiddlePart() {
-        GridPane grid = new GridPane();
+    public HBox createMiddlePart() {
+        HBox box = new HBox();
         DrawPane pane = new DrawPane();
-        Pane input = createInputs();
         
-        ColumnConstraints column1 = new ColumnConstraints();
-        column1.setPercentWidth(20);
-        ColumnConstraints column2 = new ColumnConstraints();
-        column2.setPercentWidth(80);
-        grid.getColumnConstraints().addAll(column1, column2);
+        GridPane mapArea = new GridPane();
+        mapArea.setPrefSize(WIDTH, HEIGHT*.8);
+        mapArea.setAlignment(Pos.CENTER);
+        mapArea.getStyleClass().add("grid-background");
+        mapArea.getChildren().add(pane.getPane());
         
-        GridPane rhs = new GridPane();
-        rhs.setAlignment(Pos.CENTER);
-        rhs.getStyleClass().add("grid-background");
-        rhs.getChildren().add(pane.getPane());
+        box.getChildren().add(mapArea);
         
-        grid.add(input, 0, 0);
-        grid.add(rhs, 1, 0);
-        
-        return grid;
+        return box;
     }
     
     public Button confirmButton() {
         Button butt = new Button();
         butt.setText("Generate");
-        butt.setOnAction((ActionEvent event) -> {
-            System.out.println("Hello World!");
-        });
-        GridPane.setConstraints(butt, 20, 6);
-        return butt;
-    }
-    
-    public Button randButton() {
-        Button butt = new Button();
-        butt.setText("Random");
         butt.setOnAction((ActionEvent event) -> {
             System.out.println("Hello World!");
         });
@@ -141,128 +124,6 @@ public class GUI extends Application {
             ));
         lvl.setValue("1");
         pane.add(lvl, 1, 2);
-        
-        //------------------------Party Size
-        Label prty = new Label("Party Size:");
-        pane.add(prty, 0, 3);
-        final ComboBox prt = new ComboBox(FXCollections.observableArrayList(
-                "1","2","3","4","5","6","7","8","9","10","11","12","13"
-            ));
-        prt.setValue("1");
-        pane.add(prt, 1, 3);
-        
-        //-------------------------Random Seed
-        Label seed = new Label("Random Seed:");
-        pane.add(seed, 0, 4);
-        TextField seedTextField = new TextField();
-        pane.add(seedTextField, 1, 4);
-        
-        //-------------------------Map Style
-        Label styl = new Label("Map Style:");
-        pane.add(styl, 0, 5);
-        final ComboBox sty = new ComboBox(FXCollections.observableArrayList(
-                "Standard"
-            ));
-        sty.setValue("Standard");
-        pane.add(sty, 1, 5);
-        
-        //---------------------------Grid
-        Label grd = new Label("Grid:");
-        pane.add(grd, 0, 6);
-        final ComboBox gr = new ComboBox(FXCollections.observableArrayList(
-                "Square"
-            ));
-        gr.setValue("Square");
-        pane.add(gr, 1, 6);
-        
-        //--------------------------Dungeon Layout
-        Label lyot = new Label("Dungeon Layout:");
-        pane.add(lyot, 0, 7);
-        final ComboBox lo = new ComboBox(FXCollections.observableArrayList(
-                "Rectangle"
-            ));
-        lo.setValue("Retangle");
-        pane.add(lo, 1, 7);
-        
-        //--------------------------Dungeon Size
-        Label dunsize = new Label("Dungeon Size:");
-        pane.add(dunsize, 0, 8);
-        final ComboBox sz = new ComboBox(FXCollections.observableArrayList(
-                "Small","Medium","Large"
-            ));
-        sz.setValue("Medium");
-        pane.add(sz, 1, 8);
-        
-        //--------------------------Peripheral Egress
-        Label egress = new Label("Peripheral Egress:");
-        pane.add(egress, 0, 9);
-        final ComboBox eg = new ComboBox(FXCollections.observableArrayList(
-                "No","Yes","Many","Tiling"
-            ));
-        eg.setValue("No");
-        pane.add(eg, 1, 9);
-        
-        //--------------------------Stairs
-        Label stairs = new Label("Peripheral Egress:");
-        pane.add(stairs, 0, 10);
-        final ComboBox strs = new ComboBox(FXCollections.observableArrayList(
-                "No","Yes","Many"
-            ));
-        strs.setValue("Yes");
-        pane.add(strs, 1, 10);
-        
-        //--------------------------Room Layout
-        Label rmlayout = new Label("Room Layout:");
-        pane.add(rmlayout, 0, 11);
-        final ComboBox rmly = new ComboBox(FXCollections.observableArrayList(
-                "Sparse","Scattered","Dense","Symmetric","Complex"
-            ));
-        rmly.setValue("Scattered");
-        pane.add(rmly, 1, 11);
-        
-        //--------------------------Room Size
-        Label rmsize = new Label("Room Size:");
-        pane.add(rmsize, 0, 12);
-        final ComboBox rmsz = new ComboBox(FXCollections.observableArrayList(
-                "Small","Medium","Large"
-            ));
-        rmsz.setValue("Medium");
-        pane.add(rmsz, 1, 12);
-        
-        //--------------------------Doors
-        Label door = new Label("Doors:");
-        pane.add(door, 0, 13);
-        final ComboBox doors = new ComboBox(FXCollections.observableArrayList(
-                "None","Basic","Secure","Standard","Deathtrap"
-            ));
-        doors.setValue("Standard");
-        pane.add(doors, 1, 13);
-        
-        //--------------------------Corridors
-        Label crdr = new Label("Corridors:");
-        pane.add(crdr, 0, 14);
-        final ComboBox crdrs = new ComboBox(FXCollections.observableArrayList(
-                "Labyrinth","Errant","Straight"
-            ));
-        crdrs.setValue("Errant");
-        pane.add(crdrs, 1, 14);
-        
-        //--------------------------Deadends
-        Label dedend = new Label("Remove Deadends?");
-        pane.add(dedend, 0, 15);
-        final ComboBox dedends = new ComboBox(FXCollections.observableArrayList(
-                "None","Some","All"
-            ));
-        dedends.setValue("Some");
-        pane.add(dedends, 1, 15);
-        
-        //-------------------------confirmButton
-        Button butt = confirmButton();
-        pane.add(butt, 0, 16);
-        
-        //-------------------------randButton
-        Button randbutt = randButton();
-        pane.add(randbutt, 1, 16);
         
         return pane;
     }

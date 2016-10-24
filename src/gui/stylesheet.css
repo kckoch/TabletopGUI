@@ -7,19 +7,11 @@ and open the template in the editor.
     Created on : Oct 14, 2016, 11:19:48 AM
     Author     : Scrublord
 */
+.corridor-label-text {
+    -fx-text-fill: white;
+}
 .grid-background {
     -fx-background-color: dimgray;
-}
-.grid-cell {
-    -fx-background-color: black;
-    -fx-border-width: .3px;
-}
-.grid-cell-highlight {
-    -fx-background-color:white;
-    -fx-border-color: black;
-}
-.grid-cell-hover-highlight {
-    -fx-background-color:lightgrey;
 }
 .inputs {
     -fx-background-color: lightgrey;
@@ -27,8 +19,9 @@ and open the template in the editor.
     -fx-vgap: 10;
     -fx-hgap: 10;
 }
-.label-text {
+.room-label-text {
     -fx-text-fill: white;
+    -fx-font-size: 16;
 }
 .pane-background {
     -fx-background-color: black;
