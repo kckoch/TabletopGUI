@@ -27,3 +27,12 @@ and open the template in the editor.
     -fx-vgap: 10;
     -fx-hgap: 10;
 }
+.label-text {
+    -fx-text-fill: white;
+}
+.pane-background {
+    -fx-background-color: black;
+}
+.room-background {
+    -fx-background-color: rgb(136,136,136);
+}

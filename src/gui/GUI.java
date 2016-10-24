@@ -8,9 +8,11 @@ package gui;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.*;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.stage.Screen;
@@ -25,25 +27,13 @@ public class GUI extends Application {
     @Override
     public void start(Stage stage) {
         setSize(stage);
-        Pane input = createInputs();
-        GridPane grid = new GridPane();
-        DrawGrid draw = new DrawGrid(40, 50, 800, 1000);
-        Scene scene = new Scene(grid, 300, 250);
+        VBox box = new VBox();
+        
+        box.getChildren().add(createMenu());
+        box.getChildren().add(createMiddlePart());
+        
+        Scene scene = new Scene(box, 300, 250);
         scene.getStylesheets().add("gui/stylesheet.css");
-        
-        ColumnConstraints column1 = new ColumnConstraints();
-        column1.setPercentWidth(20);
-        ColumnConstraints column2 = new ColumnConstraints();
-        column2.setPercentWidth(80);
-        grid.getColumnConstraints().addAll(column1, column2);
-        
-        GridPane rhs = new GridPane();
-        rhs.setAlignment(Pos.CENTER);
-        rhs.getStyleClass().add("grid-background");
-        rhs.getChildren().add(draw);
-        
-        grid.add(input, 0, 0);
-        grid.add(rhs, 1, 0);
         
         stage.setTitle("Map Builder");
         stage.setScene(scene);
@@ -60,6 +50,55 @@ public class GUI extends Application {
         HEIGHT = primaryScreenBounds.getHeight();
         stage.setWidth(WIDTH);
         stage.setHeight(HEIGHT);
+    }
+    
+    public MenuBar createMenu() {
+        MenuBar menuBar = new MenuBar();
+        
+        Menu menuFile = new Menu("File");
+        MenuItem upload = new MenuItem("Upload New");
+        upload.setAccelerator(KeyCombination.keyCombination("Ctrl+X"));
+        upload.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent t) {
+                //fill this in
+            }
+        });
+        MenuItem save = new MenuItem("Save");
+        save.setAccelerator(KeyCombination.keyCombination("Ctrl+S"));
+        save.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent t) {
+                //fill this in
+            }
+        });
+        menuFile.getItems().addAll(upload, save);
+        
+        Menu menuEdit = new Menu("Edit");
+        Menu menuView = new Menu("View");
+        
+        menuBar.getMenus().addAll(menuFile, menuEdit, menuView);
+        return menuBar;
+    }
+    
+    public GridPane createMiddlePart() {
+        GridPane grid = new GridPane();
+        DrawPane pane = new DrawPane();
+        Pane input = createInputs();
+        
+        ColumnConstraints column1 = new ColumnConstraints();
+        column1.setPercentWidth(20);
+        ColumnConstraints column2 = new ColumnConstraints();
+        column2.setPercentWidth(80);
+        grid.getColumnConstraints().addAll(column1, column2);
+        
+        GridPane rhs = new GridPane();
+        rhs.setAlignment(Pos.CENTER);
+        rhs.getStyleClass().add("grid-background");
+        rhs.getChildren().add(pane.getPane());
+        
+        grid.add(input, 0, 0);
+        grid.add(rhs, 1, 0);
+        
+        return grid;
     }
     
     public Button confirmButton() {

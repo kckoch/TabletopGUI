@@ -4,14 +4,13 @@
  * and open the template in the editor.
  */
 package source;
-//import gui.GUI;
+import gui.GUI;
 
 public class Main {
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) throws Exception {
-        Dungeon dung = new Dungeon("image.png");
-        System.out.println(dung);
+        
     }
 }
