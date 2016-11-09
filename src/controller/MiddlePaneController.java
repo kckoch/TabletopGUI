@@ -8,10 +8,10 @@ package controller;
 import java.util.ArrayList;
 import source.*;
 
-public class DrawPaneController {
+public class MiddlePaneController {
     private Dungeon dungeon;
     
-    public DrawPaneController(Dungeon dung) {
+    public MiddlePaneController(Dungeon dung) {
         dungeon = dung;
     }
     
@@ -37,5 +37,9 @@ public class DrawPaneController {
     
     public int getHeight() {
         return dungeon.getImgHeight();
+    }
+    
+    public String getInfo(int ndx) {
+        return dungeon.getRoom(ndx).getInfo();
     }
 }

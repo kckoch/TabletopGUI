@@ -7,6 +7,7 @@ package source;
 
 public class Room {
     int x, y, width, height;
+    String info;
     boolean start;
     
     public Room(int x, int y) {
@@ -14,6 +15,7 @@ public class Room {
         this.y = y;
         this.width = 0;
         this.height = 0;
+        this.info = "Relevant Info About This Specific Room";
         this.start = false;
     }
     
@@ -43,6 +45,10 @@ public class Room {
     
     public void setStart(){
         start = true;
+    }
+    
+    public String getInfo() {
+        return info;
     }
     
     @Override

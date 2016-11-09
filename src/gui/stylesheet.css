@@ -13,18 +13,25 @@ and open the template in the editor.
 .grid-background {
     -fx-background-color: dimgray;
 }
-.inputs {
+.info {
     -fx-background-color: lightgrey;
     -fx-alignment: CENTER;
+    -fx-spacing: 10;
+    -fx-padding: 15;
+    -fx-font-size: 14;
+}
+.info-label {
+    -fx-font-size: 14;
+    -fx-font-weight: bold;
     -fx-vgap: 10;
-    -fx-hgap: 10;
+    -fx-hgap: 15;
+}
+.pane-background {
+    -fx-background-color: black;
 }
 .room-label-text {
     -fx-text-fill: white;
     -fx-font-size: 16;
-}
-.pane-background {
-    -fx-background-color: black;
 }
 .room-background {
     -fx-background-color: rgb(136,136,136);

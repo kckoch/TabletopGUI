@@ -24,13 +24,15 @@ import javafx.stage.Screen;
 public class GUI extends Application {
     private double WIDTH;
     private double HEIGHT;
+    
     @Override
     public void start(Stage stage) {
         setSize(stage);
         VBox box = new VBox();
+        MiddlePane middle = new MiddlePane(WIDTH, HEIGHT);
         
         box.getChildren().add(createMenu());
-        box.getChildren().add(createMiddlePart());
+        box.getChildren().add(middle.getBox());
         
         Scene scene = new Scene(box, 300, 250);
         scene.getStylesheets().add("gui/stylesheet.css");
@@ -77,54 +79,5 @@ public class GUI extends Application {
         
         menuBar.getMenus().addAll(menuFile, menuEdit, menuView);
         return menuBar;
-    }
-    
-    public HBox createMiddlePart() {
-        HBox box = new HBox();
-        DrawPane pane = new DrawPane();
-        
-        GridPane mapArea = new GridPane();
-        mapArea.setPrefSize(WIDTH, HEIGHT*.8);
-        mapArea.setAlignment(Pos.CENTER);
-        mapArea.getStyleClass().add("grid-background");
-        mapArea.getChildren().add(pane.getPane());
-        
-        box.getChildren().add(mapArea);
-        
-        return box;
-    }
-    
-    public Button confirmButton() {
-        Button butt = new Button();
-        butt.setText("Generate");
-        butt.setOnAction((ActionEvent event) -> {
-            System.out.println("Hello World!");
-        });
-        GridPane.setConstraints(butt, 20, 6);
-        return butt;
-    }
-    
-    public GridPane createInputs() {
-        GridPane pane = new GridPane();
-        pane.getStyleClass().add("inputs");
-        GridPane.setConstraints(pane, 0, 0);
-
-        //------------------------Dungeon Name
-        Label dunName = new Label("Dungeon Name:");
-        pane.add(dunName, 0, 1);
-        TextField dunTextField = new TextField();
-        pane.add(dunTextField, 1, 1);
-
-        //-------------------------Dungeon Level
-        Label level = new Label("Dungeon Level:");
-        pane.add(level, 0, 2);
-        final ComboBox lvl = new ComboBox(FXCollections.observableArrayList(
-                "1","2","3","4","5","6","7","8","9","10","11","12","13","14","15",
-                "16","17","18","19","20"
-            ));
-        lvl.setValue("1");
-        pane.add(lvl, 1, 2);
-        
-        return pane;
     }
 }

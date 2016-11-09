@@ -39,7 +39,7 @@ public class Dungeon {
                         rooms.add(getRoomInfo(x, y));
                         x = rooms.get(rooms.size()-1).getWidth();
                     } else {
-                        x = tmp.getX() + tmp.getWidth();
+                        x = tmp.getX() + tmp.getWidth() - 1;
                     }
                 }
             }
