@@ -7,12 +7,15 @@ package source;
 
 public class Corridor {
     int x, y, width, height;
+    String info, name;
     
     public Corridor(int x, int y, int width, int height) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
+        this.info = "Revelent Corridor Info";
+        this.name = "";
     }
     
     public int getWidth(){
@@ -29,6 +32,22 @@ public class Corridor {
     
     public int getY() {
         return y;
+    }
+    
+    public String getInfo() {
+        return info;
+    }
+    
+    public void setInfo(String in){
+        info = in;
+    }
+    
+    public String getName() {
+        return name;
+    }
+    
+    public void setName(String in) {
+        name = in;
     }
     
     @Override

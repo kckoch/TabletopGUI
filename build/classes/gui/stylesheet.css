@@ -5,8 +5,16 @@ and open the template in the editor.
 */
 /* 
     Created on : Oct 14, 2016, 11:19:48 AM
-    Author     : Scrublord
+    Author     : Kyra
 */
+.buttons-pane {
+    -fx-alignment: CENTER;
+    -fx-hgap: 15;
+}
+
+.buttons-send {
+    -fx-background-color: lightskyblue;
+}
 .corridor-label-text {
     -fx-text-fill: white;
 }

@@ -39,7 +39,27 @@ public class MiddlePaneController {
         return dungeon.getImgHeight();
     }
     
+    public String getName(int ndx) {
+        return dungeon.getRoom(ndx).getName();
+    }
+    
     public String getInfo(int ndx) {
         return dungeon.getRoom(ndx).getInfo();
+    }
+    
+    public int getRoomHeight(int ndx) {
+        return dungeon.getRoom(ndx).getHeight();
+    }
+    
+    public int getRoomWidth(int ndx) {
+        return dungeon.getRoom(ndx).getWidth();
+    }
+    
+    public void setInfo(String str, int ndx) {
+        dungeon.getRoom(ndx).setInfo(str);
+    }
+    
+    public void setName(String str, int ndx) {
+        dungeon.getRoom(ndx).setName(str);
     }
 }

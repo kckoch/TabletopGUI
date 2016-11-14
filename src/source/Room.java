@@ -7,7 +7,7 @@ package source;
 
 public class Room {
     int x, y, width, height;
-    String info;
+    String info, name;
     boolean start;
     
     public Room(int x, int y) {
@@ -16,6 +16,7 @@ public class Room {
         this.width = 0;
         this.height = 0;
         this.info = "Relevant Info About This Specific Room";
+        this.name = "";
         this.start = false;
     }
     
@@ -49,6 +50,18 @@ public class Room {
     
     public String getInfo() {
         return info;
+    }
+    
+    public void setInfo(String in) {
+        info = in;
+    }
+    
+    public void setName(String namein) {
+        name = namein;
+    }
+    
+    public String getName() {
+        return name;
     }
     
     @Override

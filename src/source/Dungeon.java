@@ -27,6 +27,8 @@ public class Dungeon {
         corrs = new ArrayList<Corridor>();
         parseImage();
         separateCorridors();
+        nameRooms();
+        nameCorrs();
     }
     
     private void parseImage() {
@@ -37,6 +39,7 @@ public class Dungeon {
                     Room tmp;
                     if((tmp=alreadyRoom(x, y)) == null) {
                         rooms.add(getRoomInfo(x, y));
+                        //moves it to the end of the room on the image so we don't check each pixel
                         x = rooms.get(rooms.size()-1).getWidth();
                     } else {
                         x = tmp.getX() + tmp.getWidth() - 1;
@@ -51,6 +54,7 @@ public class Dungeon {
         int height = 0;
         int width = 0;
         Color c;
+        //finds the width of the room
         for(int x = xcoord; x < img.getWidth(); x++) {
             c = new Color(img.getRGB(x, ycoord));
             if(c.equals(Color.BLACK)) {
@@ -59,6 +63,7 @@ public class Dungeon {
                 width++;
             }
         }
+        //finds the height of the room
         for(int y = ycoord; y < img.getHeight(); y++) {
             c = new Color(img.getRGB(xcoord, y));
             if(c.equals(Color.BLACK))
@@ -92,6 +97,18 @@ public class Dungeon {
         for(Integer in : toremove){
             rooms.remove(in.intValue()-count);
             count++;
+        }
+    }
+    
+    private void nameRooms(){
+        for(int i = 0; i < rooms.size(); i++) {
+            rooms.get(i).setName("Room " + Integer.toString(i));
+        }
+    }
+    
+    private void nameCorrs(){
+        for(int i = 0; i < corrs.size(); i++) {
+            corrs.get(i).setName("Corridor " + Integer.toString(i));
         }
     }
     
