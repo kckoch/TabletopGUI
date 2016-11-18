@@ -10,6 +10,7 @@ public class Room {
     String info, name;
     boolean start;
     
+    //this constructor is used if we are creating a room for the first time
     public Room(int x, int y) {
         this.x = x;
         this.y = y;
@@ -20,6 +21,7 @@ public class Room {
         this.start = false;
     }
     
+    //this constructor is used if we are reading in a room from the xml
     public Room(int x, int y, int width, int height, String info, String name, boolean start) {
         this.x = x;
         this.y = y;

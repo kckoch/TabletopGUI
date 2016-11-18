@@ -52,7 +52,7 @@ public final class MiddlePane {
         
         createMap();
         drawRooms();
-        viewRoomInfoPane();
+        roomInfoPane();
         
         box.getChildren().add(mapArea);
         box.getChildren().add(info);
@@ -95,14 +95,14 @@ public final class MiddlePane {
     
     //draws the corridors on the map.  currently does not do anything when the corridor is clicked
     public void addCorr(int x, int y, int width, int height, int ndx) {
-        Pane room = new Pane();
-        room.setPrefSize(width, height);
-        room.relocate(x, y);
-        room.getStyleClass().add("room-background");
-        room.setOnMouseClicked((MouseEvent t) -> {
+        Pane corr = new Pane();
+        corr.setPrefSize(width, height);
+        corr.relocate(x, y);
+        corr.getStyleClass().add("room-background");
+        corr.setOnMouseClicked((MouseEvent t) -> {
             System.out.println(ndx);
         });
-        map.getChildren().add(room);
+        map.getChildren().add(corr);
     }
     
     //draws the rooms on the map.  will update the info panel when a new room is clicked
@@ -152,7 +152,7 @@ public final class MiddlePane {
     }
     
     //this is the panel on the right that shows key room information
-    public void viewRoomInfoPane() {
+    public void roomInfoPane() {
         info = new VBox();
         info.setPrefWidth(WIDTH*INFOCONST);
         info.getStyleClass().add("info");
@@ -184,7 +184,7 @@ public final class MiddlePane {
         roomInfo.setWrapText(true);
         info.getChildren().add(roomInfo);
         
-        //-------------------------Save Button and Send to Mat Button
+        //-------------------------Save Button
         GridPane butt = new GridPane();
         butt.getStyleClass().add("buttons-pane");
         butt.getColumnConstraints().add(column1); 
@@ -193,11 +193,13 @@ public final class MiddlePane {
         Button save = new Button();
         save.setText("Save");
         save.setOnAction((ActionEvent event) -> {
-            control.setInfo(roomInfo.getText(), ROOMINFO);
-            control.setName(roomNameField.getText(), NAME);
+            control.setInfo(roomInfo.getText(), selectedRoom);
+            control.setName(roomNameField.getText(), selectedRoom);
+            control.save();
         });
         butt.add(save, 0, 0);
         
+        //-------------------------Send to Mat Button
         Button mat = new Button();
         mat.getStyleClass().add("buttons-send");
         mat.setText("Send to Mat");

@@ -32,11 +32,13 @@ public class GUI extends Application {
     @Override
     public void start(Stage stage) {
         setSize(stage);
+        //the main application is a vbox, which basically tackles the gui in horizontal layers
         VBox box = new VBox();
+        //middlepane is where the interactive map and room info is stored
         MiddlePane middle = new MiddlePane(WIDTH, HEIGHT);
         
-        box.getChildren().add(createMenu());
-        box.getChildren().add(middle.getBox());
+        box.getChildren().add(createMenu());    //adds the menu bar at the top
+        box.getChildren().add(middle.getBox()); //adds the map and info pane
         
         Scene scene = new Scene(box, 300, 250);
         scene.getStylesheets().add("gui/stylesheet.css");
@@ -48,7 +50,7 @@ public class GUI extends Application {
     }
     
     public void setSize(Stage stage) {
-        //set Stage boundaries to visible bounds of the main screen
+        //set Stage boundaries to visible bounds of the main screen, is relative to computer running the program
         Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
         stage.setX(primaryScreenBounds.getMinX());
         stage.setY(primaryScreenBounds.getMinY());
@@ -58,6 +60,15 @@ public class GUI extends Application {
         stage.setHeight(HEIGHT);
     }
     
+    /*
+    makes the menubar for the application
+    Curremt Layout:
+    File
+        Upload New
+        Save
+    Edit
+    View
+    */
     public MenuBar createMenu() {
         MenuBar menuBar = new MenuBar();
         
@@ -76,7 +87,7 @@ public class GUI extends Application {
                 //fill this in
             }
         });
-        menuFile.getItems().addAll(upload, save);
+        menuFile.getItems().addAll(upload, save); //links the save and upload new under the File tab
         
         Menu menuEdit = new Menu("Edit");
         Menu menuView = new Menu("View");

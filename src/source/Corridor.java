@@ -9,6 +9,7 @@ public class Corridor {
     int x, y, width, height;
     String info, name;
     
+    //This constructor is used if we are creating the corridor for the first time
     public Corridor(int x, int y, int width, int height) {
         this.x = x;
         this.y = y;
@@ -18,6 +19,7 @@ public class Corridor {
         this.name = "";
     }
     
+    //This constructor is used if we are reading in an xml corridor
     public Corridor(int x, int y, int width, int height, String info, String name) {
         this.x = x;
         this.y = y;

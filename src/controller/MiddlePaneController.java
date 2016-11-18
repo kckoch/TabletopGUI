@@ -13,6 +13,9 @@ public class MiddlePaneController {
     private Dungeon dungeon;
     XML xml;
     
+    //This constructor will check to see if there is a dungeon saved in the xml.
+    //If there is, it will read in that dungeon and all its information.
+    //Otherwise, it'll create a default dungeon based on image.png
     public MiddlePaneController() {
         xml = new XML();
         File xmlfile = new File("save.xml");
@@ -29,10 +32,6 @@ public class MiddlePaneController {
             System.out.println("need to create an xml");
             xml.saveToXML("save.xml", dungeon);
         }
-    }
-    
-    public MiddlePaneController(Dungeon dung) {
-        dungeon = dung;
     }
     
     public int getNumberRooms() {
@@ -81,5 +80,9 @@ public class MiddlePaneController {
     
     public void setName(String str, int ndx) {
         dungeon.getRoom(ndx).setName(str);
+    }
+    
+    public void save() {
+        xml.saveToXML("save.xml", dungeon);
     }
 }
