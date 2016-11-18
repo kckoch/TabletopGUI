@@ -63,7 +63,7 @@ public final class MiddlePane {
         mapArea = new GridPane();
         
         //--------------THIS IS WHERE THE IMAGE IS PARSED TO CREATE DUNGEON INFO-----------------
-        control = new MiddlePaneController(new Dungeon("image.png"));
+        control = new MiddlePaneController();
         
         //map image gui
         map = new Pane();
@@ -79,7 +79,7 @@ public final class MiddlePane {
     
     //this function draws the rooms and corridors onto the map
     //NOTE: this function violates the rule where gui code isn't supposed to deal with backend code
-    //but I've decided ease and readability is more important security
+    //but I've decided ease and readability is more important
     public void drawRooms(){
         int size = control.getNumberCorr();
         for(int i = 0; i < size; i++) {

@@ -5,11 +5,31 @@
  */
 package controller;
 
+import java.io.File;
 import java.util.ArrayList;
 import source.*;
 
 public class MiddlePaneController {
     private Dungeon dungeon;
+    XML xml;
+    
+    public MiddlePaneController() {
+        xml = new XML();
+        File xmlfile = new File("save.xml");
+        if(xmlfile.exists()){
+            System.out.println("xml exists");
+            if(xml.readXML("save.xml")) {
+                System.out.println("we were able to read the xml");
+                dungeon = xml.getDungeon();
+            } else {
+                System.out.println("SOMETHING WENT WRONG WITH THE READ XML!!");
+            }  
+        } else {
+            dungeon = new Dungeon("image.png");
+            System.out.println("need to create an xml");
+            xml.saveToXML("save.xml", dungeon);
+        }
+    }
     
     public MiddlePaneController(Dungeon dung) {
         dungeon = dung;

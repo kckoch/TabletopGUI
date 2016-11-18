@@ -18,6 +18,15 @@ public class Corridor {
         this.name = "";
     }
     
+    public Corridor(int x, int y, int width, int height, String info, String name) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        this.info = info;
+        this.name = name;
+    }
+    
     public int getWidth(){
         return width;
     }

@@ -25,6 +25,10 @@ public class GUI extends Application {
     private double WIDTH;
     private double HEIGHT;
     
+    public static void main(String[] args){
+        launch(args);
+    }
+    
     @Override
     public void start(Stage stage) {
         setSize(stage);

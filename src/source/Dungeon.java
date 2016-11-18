@@ -14,11 +14,14 @@ import javax.imageio.ImageIO;
 
 public class Dungeon {
     BufferedImage img;
+    String imgName, name;
     ArrayList<Room> rooms;
     ArrayList<Corridor> corrs;
     static final Color ROOMCOLOR = new Color(136,136,136);
     public Dungeon(String filename) {
+        name = "Dungeon";
         try {
+            imgName = filename;
             img = ImageIO.read(Dungeon.class.getResource(filename));
         } catch (IOException e) {
             e.printStackTrace();
@@ -29,6 +32,18 @@ public class Dungeon {
         separateCorridors();
         nameRooms();
         nameCorrs();
+    }
+    
+    public Dungeon(String filename, String name, ArrayList<Room> roomsin, ArrayList<Corridor> corrsin) {
+        try {
+            imgName = filename;
+            img = ImageIO.read(Dungeon.class.getResource(filename));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        this.name = name;
+        rooms = roomsin;
+        corrs = corrsin;
     }
     
     private void parseImage() {
@@ -112,6 +127,22 @@ public class Dungeon {
         }
     }
     
+    public void setName(String namein) {
+        name = namein;
+    }
+    
+    public void setImgName(String namein) {
+        imgName = namein;
+    }
+    
+    public void setRooms(ArrayList<Room> roomsin) {
+        rooms = roomsin;
+    }
+    
+    public void setCorrs(ArrayList<Corridor> corrsin) {
+        corrs = corrsin;
+    }
+    
     public ArrayList<Room> getRooms() {
         return rooms;
     }
@@ -134,6 +165,14 @@ public class Dungeon {
     
     public int getImgHeight() {
         return img.getHeight();
+    }
+    
+    public String getImgName() {
+        return imgName;
+    }
+    
+    public String getName() {
+        return name;
     }
     
     public String toString() {

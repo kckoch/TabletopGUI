@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<dungeon>
+    <imgName>image.png</imgName>
+    <name>Dungeon</name>
+    <roomsSize>16</roomsSize>
+    <corrsSize>13</corrsSize>
+    <room>
+        <x>17</x>
+        <y>9</y>
+        <width>40</width>
+        <height>96</height>
+        <info>Relevant Info About This Specific Room</info>
+        <name>Room 0</name>
+        <start>false</start>
+    </room>
+    <room>
+        <x>369</x>
+        <y>9</y>
+        <width>31</width>
+        <height>64</height>
+        <info>Relevant Info About This Specific Room</info>
+        <name>Room 1</name>
+        <start>false</start>
+    </room>
+    <room>
+        <x>89</x>
+        <y>25</y>
+        <width>88</width>
+        <height>80</height>
+        <info>Relevant Info About This Specific Room</info>
+        <name>Room 2</name>
+        <start>false</start>
+    </room>
+    <room>
+        <x>225</x>
+        <y>33</y>
+        <width>96</width>
+        <height>64</height>
+        <info>Relevant Info About This Specific Room</info>
+        <name>Room 3</name>
+        <start>false</start>
+    </room>
+    <room>
+        <x>209</x>
+        <y>121</y>
+        <width>24</width>
+        <height>83</height>
+        <info>Relevant Info About This Specific Room</info>
+        <name>Room 4</name>
+        <start>false</start>
+    </room>
+    <room>
+        <x>289</x>
+        <y>121</y>
+        <width>111</width>
+        <height>72</height>
+        <info>Relevant Info About This Specific Room</info>
+        <name>Room 5</name>
+        <start>false</start>
+    </room>
+    <room>
+        <x>105</x>
+        <y>145</y>
+        <width>88</width>
+        <height>120</height>
+        <info>Relevant Info About This Specific Room</info>
+        <name>Room 6</name>
+        <start>false</start>
+    </room>
+    <room>
+        <x>9</x>
+        <y>153</y>
+        <width>64</width>
+        <height>96</height>
+        <info>Relevant Info About This Specific Room</info>
+        <name>Room 7</name>
+        <start>false</start>
+    </room>
+    <room>
+        <x>209</x>
+        <y>225</y>
+        <width>48</width>
+        <height>48</height>
+        <info>Relevant Info About This Specific Room</info>
+        <name>Room 8</name>
+        <start>false</start>
+    </room>
+    <room>
+        <x>300</x>
+        <y>233</y>
+        <width>85</width>
+        <height>56</height>
+        <info>Relevant Info About This Specific Room</info>
+        <name>Room 9</name>
+        <start>false</start>
+    </room>
+    <room>
+        <x>25</x>
+        <y>273</y>
+        <width>64</width>
+        <height>56</height>
+        <info>Relevant Info About This Specific Room</info>
+        <name>Room 10</name>
+        <start>false</start>
+    </room>
+    <room>
+        <x>113</x>
+        <y>281</y>
+        <width>56</width>
+        <height>32</height>
+        <info>Relevant Info About This Specific Room</info>
+        <name>Room 11</name>
+        <start>false</start>
+    </room>
+    <room>
+        <x>217</x>
+        <y>281</y>
+        <width>64</width>
+        <height>119</height>
+        <info>Relevant Info About This Specific Room</info>
+        <name>Room 12</name>
+        <start>false</start>
+    </room>
+    <room>
+        <x>321</x>
+        <y>321</y>
+        <width>72</width>
+        <height>64</height>
+        <info>Relevant Info About This Specific Room</info>
+        <name>Room 13</name>
+        <start>false</start>
+    </room>
+    <room>
+        <x>25</x>
+        <y>345</y>
+        <width>56</width>
+        <height>48</height>
+        <info>Relevant Info About This Specific Room</info>
+        <name>Room 14</name>
+        <start>false</start>
+    </room>
+    <room>
+        <x>121</x>
+        <y>353</y>
+        <width>64</width>
+        <height>47</height>
+        <info>Relevant Info About This Specific Room</info>
+        <name>Room 15</name>
+        <start>false</start>
+    </room>
+    <corridor>
+        <x>321</x>
+        <y>49</y>
+        <width>79</width>
+        <height>8</height>
+        <info>Revelent Corridor Info</info>
+        <name>Corridor 0</name>
+    </corridor>
+    <corridor>
+        <x>57</x>
+        <y>52</y>
+        <width>120</width>
+        <height>8</height>
+        <info>Revelent Corridor Info</info>
+        <name>Corridor 1</name>
+    </corridor>
+    <corridor>
+        <x>292</x>
+        <y>97</y>
+        <width>8</width>
+        <height>208</height>
+        <info>Revelent Corridor Info</info>
+        <name>Corridor 2</name>
+    </corridor>
+    <corridor>
+        <x>92</x>
+        <y>105</y>
+        <width>8</width>
+        <height>235</height>
+        <info>Revelent Corridor Info</info>
+        <name>Corridor 3</name>
+    </corridor>
+    <corridor>
+        <x>233</x>
+        <y>148</y>
+        <width>167</width>
+        <height>8</height>
+        <info>Revelent Corridor Info</info>
+        <name>Corridor 4</name>
+    </corridor>
+    <corridor>
+        <x>73</x>
+        <y>188</y>
+        <width>120</width>
+        <height>8</height>
+        <info>Revelent Corridor Info</info>
+        <name>Corridor 5</name>
+    </corridor>
+    <corridor>
+        <x>100</x>
+        <y>196</y>
+        <width>200</width>
+        <height>8</height>
+        <info>Revelent Corridor Info</info>
+        <name>Corridor 6</name>
+    </corridor>
+    <corridor>
+        <x>236</x>
+        <y>273</y>
+        <width>8</width>
+        <height>127</height>
+        <info>Revelent Corridor Info</info>
+        <name>Corridor 7</name>
+    </corridor>
+    <corridor>
+        <x>340</x>
+        <y>289</y>
+        <width>8</width>
+        <height>96</height>
+        <info>Revelent Corridor Info</info>
+        <name>Corridor 8</name>
+    </corridor>
+    <corridor>
+        <x>281</x>
+        <y>297</y>
+        <width>67</width>
+        <height>8</height>
+        <info>Revelent Corridor Info</info>
+        <name>Corridor 9</name>
+    </corridor>
+    <corridor>
+        <x>140</x>
+        <y>313</y>
+        <width>8</width>
+        <height>87</height>
+        <info>Revelent Corridor Info</info>
+        <name>Corridor 10</name>
+    </corridor>
+    <corridor>
+        <x>44</x>
+        <y>329</y>
+        <width>8</width>
+        <height>64</height>
+        <info>Revelent Corridor Info</info>
+        <name>Corridor 11</name>
+    </corridor>
+    <corridor>
+        <x>52</x>
+        <y>332</y>
+        <width>96</width>
+        <height>8</height>
+        <info>Revelent Corridor Info</info>
+        <name>Corridor 12</name>
+    </corridor>
+</dungeon>

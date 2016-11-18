@@ -20,6 +20,16 @@ public class Room {
         this.start = false;
     }
     
+    public Room(int x, int y, int width, int height, String info, String name, boolean start) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        this.info = info;
+        this.name = name;
+        this.start = start;
+    }
+    
     public void setWdith(int width){
         this.width = width;
     }
@@ -46,6 +56,10 @@ public class Room {
     
     public void setStart(){
         start = true;
+    }
+    
+    public boolean getStart() {
+        return start;
     }
     
     public String getInfo() {
