@@ -43,7 +43,6 @@ public class XML {
             }
 
             Element doc = dom.getDocumentElement();
-            Element e;
             
             img = getTextValue(doc, "imgName");
             dunname = getTextValue(doc, "name");
@@ -58,26 +57,27 @@ public class XML {
             boolean start = false;
             
             NodeList nList = doc.getElementsByTagName("room");
+            Element e;
             for(int i = 0; i < numRooms; i++){
                 e = (Element)nList.item(i);
-                x = Integer.parseInt(getTextValue(doc, "x"));
-                y = Integer.parseInt(getTextValue(doc, "y"));
-                width = Integer.parseInt(getTextValue(doc, "width"));
-                height = Integer.parseInt(getTextValue(doc, "height"));
-                info = getTextValue(doc, "info");
-                name = getTextValue(doc, "name");
-                start = Boolean.parseBoolean(getTextValue(doc, "start"));
+                x = Integer.parseInt(getTextValue(e, "x"));
+                y = Integer.parseInt(getTextValue(e, "y"));
+                width = Integer.parseInt(getTextValue(e, "width"));
+                height = Integer.parseInt(getTextValue(e, "height"));
+                info = getTextValue(e, "info");
+                name = getTextValue(e, "name");
+                start = Boolean.parseBoolean(getTextValue(e, "start"));
                 rooms.add(new Room(x, y, width, height, info, name, start));
             }
             nList = doc.getElementsByTagName("corridor");
             for(int i = 0; i < numCorrs; i++){
                 e = (Element)nList.item(i);
-                x = Integer.parseInt(getTextValue(doc, "x"));
-                y = Integer.parseInt(getTextValue(doc, "y"));
-                width = Integer.parseInt(getTextValue(doc, "width"));
-                height = Integer.parseInt(getTextValue(doc, "height"));
-                info = getTextValue(doc, "info");
-                name = getTextValue(doc, "name");
+                x = Integer.parseInt(getTextValue(e, "x"));
+                y = Integer.parseInt(getTextValue(e, "y"));
+                width = Integer.parseInt(getTextValue(e, "width"));
+                height = Integer.parseInt(getTextValue(e, "height"));
+                info = getTextValue(e, "info");
+                name = getTextValue(e, "name");
                 corrs.add(new Corridor(x, y, width, height, info, name));
             }
             dungeon = new Dungeon(img, dunname, rooms, corrs);

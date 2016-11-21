@@ -24,6 +24,7 @@ public class MiddlePaneController {
             if(xml.readXML("save.xml")) {
                 System.out.println("we were able to read the xml");
                 dungeon = xml.getDungeon();
+                System.out.println(dungeon);
             } else {
                 System.out.println("SOMETHING WENT WRONG WITH THE READ XML!!");
             }  

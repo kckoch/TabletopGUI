@@ -82,7 +82,7 @@ public class Room {
     
     @Override
     public String toString() {
-        String str = "x: " + x + "\ny: " + y + "\nwidth: " + width + "\nheight: " + height;
+        String str = "x: " + x + "\ny: " + y + "\nwidth: " + width + "\nheight: " + height + "\ninfo: " + info;
         return(str);
     }
 }

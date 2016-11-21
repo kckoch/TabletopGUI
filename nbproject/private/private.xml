@@ -13,11 +13,12 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/Scrublord/Documents/CPCS/4820/TabletopGUI/src/controller/MiddlePaneController.java</file>
-            <file>file:/D:/Scrublord/Documents/CPCS/4820/TabletopGUI/src/gui/GUI.java</file>
             <file>file:/D:/Scrublord/Documents/CPCS/4820/TabletopGUI/src/source/Room.java</file>
-            <file>file:/D:/Scrublord/Documents/CPCS/4820/TabletopGUI/src/gui/stylesheet.css</file>
-            <file>file:/D:/Scrublord/Documents/CPCS/4820/TabletopGUI/src/source/Main.java</file>
+            <file>file:/D:/Scrublord/Documents/CPCS/4820/TabletopGUI/src/gui/GUI.java</file>
+            <file>file:/D:/Scrublord/Documents/CPCS/4820/TabletopGUI/src/source/Dungeon.java</file>
+            <file>file:/D:/Scrublord/Documents/CPCS/4820/TabletopGUI/src/source/Corridor.java</file>
             <file>file:/D:/Scrublord/Documents/CPCS/4820/TabletopGUI/src/gui/MiddlePane.java</file>
+            <file>file:/D:/Scrublord/Documents/CPCS/4820/TabletopGUI/src/source/XML.java</file>
         </group>
     </open-files>
 </project-private>
