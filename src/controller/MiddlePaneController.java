@@ -6,12 +6,16 @@
 package controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import source.*;
 
 public class MiddlePaneController {
     private Dungeon dungeon;
     XML xml;
+    BTClient client;
     
     //This constructor will check to see if there is a dungeon saved in the xml.
     //If there is, it will read in that dungeon and all its information.
@@ -32,6 +36,13 @@ public class MiddlePaneController {
             dungeon = new Dungeon("image.png");
             System.out.println("need to create an xml");
             xml.saveToXML("save.xml", dungeon);
+        }
+        
+        try {
+            //p sure this doesn't work yet
+            //client.init();
+        } catch (Exception e) {
+            Logger.getLogger(MiddlePaneController.class.getName()).log(Level.SEVERE, null, e);
         }
     }
     
