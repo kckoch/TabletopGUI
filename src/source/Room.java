@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -5,10 +6,14 @@
  */
 package source;
 
+import java.awt.Point;
+import java.util.ArrayList;
+
 public class Room {
-    int x, y, width, height;
-    String info, name;
-    boolean start;
+    private int x, y, width, height;
+    private String info, name;
+    private boolean start;
+    private ArrayList<String> doors;
     
     //this constructor is used if we are creating a room for the first time
     public Room(int x, int y) {
@@ -19,6 +24,7 @@ public class Room {
         this.info = "Relevant Info About This Specific Room";
         this.name = "";
         this.start = false;
+        this.doors = new ArrayList<String>();
     }
     
     //this constructor is used if we are reading in a room from the xml
@@ -84,5 +90,9 @@ public class Room {
     public String toString() {
         String str = "x: " + x + "\ny: " + y + "\nwidth: " + width + "\nheight: " + height + "\ninfo: " + info;
         return(str);
+    }
+    
+    public void addDoor(String direction) {
+        doors.add(direction);
     }
 }

@@ -32,6 +32,7 @@ public class Dungeon {
         corrs = new ArrayList<Corridor>();
         parseImage();
         separateCorridors();
+        createDoors();
         nameRooms();
         nameCorrs();
     }
@@ -123,6 +124,16 @@ public class Dungeon {
         for(Integer in : toremove){
             rooms.remove(in.intValue()-count);
             count++;
+        }
+    }
+    
+    private void createDoors() {
+        for(Room room : rooms) {
+            for(Corridor corr : corrs) {
+                if(corr.getX() <= room.getX() && corr.getX() + corr.getWidth() >= room.getX()) {
+                    //if(corr.getY() >= room.getY())
+                }
+            }
         }
     }
     
