@@ -5,9 +5,12 @@
  */
 package source;
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.bluetooth.*;
 import javax.microedition.io.*;
 
@@ -17,9 +20,10 @@ public class BTClient implements DiscoveryListener {
     //vector containing the devices discovered
     private static Vector vecDevices=new Vector();
     private static String connectionURL=null;
+    private RemoteDevice remoteDevice;
+    private DiscoveryAgent agent;
 
     public void init() throws IOException {
-        System.out.println("in init");
         System.out.flush();
         BTClient client=new BTClient();
 
@@ -31,7 +35,7 @@ public class BTClient implements DiscoveryListener {
         System.out.println("created local device");
         System.out.flush();
         //find devices
-        DiscoveryAgent agent = localDevice.getDiscoveryAgent();
+        agent = localDevice.getDiscoveryAgent();
 
         System.out.println("Starting device inquiry...");
         agent.startInquiry(DiscoveryAgent.GIAC, client);
@@ -59,8 +63,8 @@ public class BTClient implements DiscoveryListener {
             //print bluetooth device addresses and names in the format [ No. address (name) ]
             System.out.println("Bluetooth Devices: ");
             for (int i = 0; i <deviceCount; i++) {
-                RemoteDevice remoteDevice=(RemoteDevice)vecDevices.elementAt(i);
-                System.out.println((i+1)+". "+remoteDevice.getBluetoothAddress()+" ("+remoteDevice.getFriendlyName(true)+")");
+                RemoteDevice tmp=(RemoteDevice)vecDevices.elementAt(i);
+                System.out.println((i+1)+". "+tmp.getBluetoothAddress()+" ("+tmp.getFriendlyName(true)+")");
             }
         }
 
@@ -71,11 +75,11 @@ public class BTClient implements DiscoveryListener {
         int index=Integer.parseInt(chosenIndex.trim());
 
         //check for spp service
-        RemoteDevice remoteDevice=(RemoteDevice)vecDevices.elementAt(index-1);
+        remoteDevice=(RemoteDevice)vecDevices.elementAt(index-1);
         UUID[] uuidSet = new UUID[1];
-        uuidSet[0]=new UUID("446118f08b1e11e29e960800200c9a66", false);
+        uuidSet[0]=new UUID(0x1101);
 
-        System.out.println("\nSearching for service...");
+        System.out.println("Searching for service...");
         agent.searchServices(null,uuidSet,remoteDevice,client);
 
         try {
@@ -88,17 +92,9 @@ public class BTClient implements DiscoveryListener {
         }
 
         if(connectionURL==null){
-            System.out.println("Device does not support Simple SPP Service.");
+            System.out.println("Could not connect to device.");
             System.exit(0);
         }
-
-        //connect to the server and send a line of text
-        StreamConnection streamConnection=(StreamConnection)Connector.open(connectionURL);
-
-        //send string
-
-        //read response
-
     }//init
 
     //methods of DiscoveryListener
@@ -131,6 +127,45 @@ public class BTClient implements DiscoveryListener {
         synchronized(lock){
             lock.notify();
         }
-
     }//end method
+    
+    /*public void btConnect(final ServiceRecord sr) {
+        Thread th = new Thread() {
+            public void run() {
+                System.out.println("BTMIDlet.btConnect.run()");
+                RemoteDevice rd = sr.getHostDevice();
+                String connectionURL = sr.getConnectionURL(ServiceRecord.NOAUTHENTICATE_NOENCRYPT, false);
+                try {
+                    System.out.println(
+                        "Connecting to " + rd.getFriendlyName(false));
+                    System.out.println(
+                        "Connecting to " + rd.getFriendlyName(false) + 
+                        ", " + connectionURL);
+                    StreamConnection streamConnection = (StreamConnection)Connector.open(connectionURL);
+                    DataOutputStream dataout = streamConnection.openDataOutputStream();
+                    dataout.writeUTF(messageOut);
+                    System.out.println("Closing");
+                    streamConnection.close();
+                } catch (IOException ioe) {
+                    System.out.println("BTMIDlet.btConnect, exception & + ioe");
+                }
+            }
+        };
+        th.start();
+    }*/
+    
+    public boolean send(String toSend) {
+        try {
+            //connect to the server and send a line of text
+            StreamConnection streamConnection=(StreamConnection)Connector.open(connectionURL);
+            DataOutputStream dataout = streamConnection.openDataOutputStream();
+            dataout.writeBytes(toSend);
+            System.out.println("Closing");
+            streamConnection.close();
+        } catch (IOException ex) {
+            Logger.getLogger(BTClient.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return true;
+    }
 }

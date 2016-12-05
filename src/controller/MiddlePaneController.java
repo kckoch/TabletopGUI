@@ -41,7 +41,7 @@ public class MiddlePaneController {
         try {
             //p sure this doesn't work yet
             client = new BTClient();
-            //client.init();
+            client.init();
         } catch (Exception e) {
             Logger.getLogger(MiddlePaneController.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -103,24 +103,19 @@ public class MiddlePaneController {
         String send = "";
         int width = dungeon.getRoom(roomndx).getWidth();
         int height = dungeon.getRoom(roomndx).getHeight();
-        System.out.println("width: " + width + " height: " + height);
         double norm;
         if(width > height)
             norm = 12.0/width;
         else
             norm = 12.0/height;
-        System.out.println("norm: " + norm);
         width = (int) Math.ceil(width*norm) - 1;
         height = (int) Math.ceil(height*norm) - 1;
-        
-        System.out.println("newwidth: " + width + " newheight: " + height);
         
         int xstart = (12-width)/2;
         int ystart = (12-height)/2;
         int xend = xstart+width;
         int yend = ystart+height;
-        
-        System.out.println("xstart: " + xstart + " ystart: " + ystart + " xend: " + xend + " yend: " + yend);
+
         byte[][] arr = new byte[12][12];
         
         for(int i = xstart; i <= xend; i++){
@@ -141,7 +136,7 @@ public class MiddlePaneController {
                 send += arr[i][k];
             }
         }
-        
         System.out.println(send);
+        client.send(send);
     }
 }
