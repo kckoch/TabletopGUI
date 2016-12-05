@@ -129,11 +129,19 @@ public class MiddlePaneController {
         
         for(int i = 0; i < 12; i++){
             for(int k = 0; k < 12; k++){
-                System.out.print(arr[i][k] + " ");
-                if(k == 11) {
-                    System.out.print("\n");
+                if(i%2 == 0) {
+                    System.out.print(arr[i][k] + " ");
+                    if(k == 11) {
+                        System.out.print("\n");
+                    }
+                    send += arr[i][k];
+                } else {
+                    System.out.print(arr[i][11-k] + " ");
+                    send += arr[i][11-k];
+                    if(k == 11) {
+                        System.out.print("\n");
+                    }
                 }
-                send += arr[i][k];
             }
         }
         System.out.println(send);

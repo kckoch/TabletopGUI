@@ -141,8 +141,6 @@ public class BTClient implements DiscoveryListener {
     public boolean send(String toSend) {
         try {
             dataout.writeBytes(toSend);
-            System.out.println("Closing");
-            streamConnection.close();
         } catch (IOException ex) {
             Logger.getLogger(BTClient.class.getName()).log(Level.SEVERE, null, ex);
             return false;

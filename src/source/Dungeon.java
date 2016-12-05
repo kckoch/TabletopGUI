@@ -131,7 +131,9 @@ public class Dungeon {
         for(Room room : rooms) {
             for(Corridor corr : corrs) {
                 if(corr.getX() <= room.getX() && corr.getX() + corr.getWidth() >= room.getX()) {
-                    //if(corr.getY() >= room.getY())
+                    if(corr.getY() >= room.getY() && corr.getX() + corr.getHeight() <= room.getX()){
+                        room.addDoor("EAST");
+                    }
                 }
             }
         }
