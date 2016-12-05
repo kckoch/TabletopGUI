@@ -204,7 +204,7 @@ public final class MiddlePane {
         mat.getStyleClass().add("buttons-send");
         mat.setText("Send to Mat");
         mat.setOnAction((ActionEvent event) -> {
-            System.out.println("Hello World!");
+            control.sendToMat(selectedRoom);
         });
         butt.add(mat, 1, 0);
         info.getChildren().add(butt);

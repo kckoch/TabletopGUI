@@ -8,6 +8,7 @@ package controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.lang.Math;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import source.*;
@@ -28,7 +29,6 @@ public class MiddlePaneController {
             if(xml.readXML("save.xml")) {
                 System.out.println("we were able to read the xml");
                 dungeon = xml.getDungeon();
-                System.out.println(dungeon);
             } else {
                 System.out.println("SOMETHING WENT WRONG WITH THE READ XML!!");
             }  
@@ -40,6 +40,7 @@ public class MiddlePaneController {
         
         try {
             //p sure this doesn't work yet
+            client = new BTClient();
             //client.init();
         } catch (Exception e) {
             Logger.getLogger(MiddlePaneController.class.getName()).log(Level.SEVERE, null, e);
@@ -96,5 +97,51 @@ public class MiddlePaneController {
     
     public void save() {
         xml.saveToXML("save.xml", dungeon);
+    }
+    
+    public void sendToMat(int roomndx) {
+        String send = "";
+        int width = dungeon.getRoom(roomndx).getWidth();
+        int height = dungeon.getRoom(roomndx).getHeight();
+        System.out.println("width: " + width + " height: " + height);
+        double norm;
+        if(width > height)
+            norm = 12.0/width;
+        else
+            norm = 12.0/height;
+        System.out.println("norm: " + norm);
+        width = (int) Math.ceil(width*norm) - 1;
+        height = (int) Math.ceil(height*norm) - 1;
+        
+        System.out.println("newwidth: " + width + " newheight: " + height);
+        
+        int xstart = (12-width)/2;
+        int ystart = (12-height)/2;
+        int xend = xstart+width;
+        int yend = ystart+height;
+        
+        System.out.println("xstart: " + xstart + " ystart: " + ystart + " xend: " + xend + " yend: " + yend);
+        byte[][] arr = new byte[12][12];
+        
+        for(int i = xstart; i <= xend; i++){
+            arr[ystart][i] = 1;
+            arr[yend][i] = 1;
+        }
+        for(int i = ystart; i <= yend; i++) {
+            arr[i][xstart] = 1;
+            arr[i][xend] = 1;
+        }
+        
+        for(int i = 0; i < 12; i++){
+            for(int k = 0; k < 12; k++){
+                System.out.print(arr[i][k] + " ");
+                if(k == 11) {
+                    System.out.print("\n");
+                }
+                send += arr[i][k];
+            }
+        }
+        
+        System.out.println(send);
     }
 }

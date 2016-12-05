@@ -19,7 +19,8 @@ public class BTClient implements DiscoveryListener {
     private static String connectionURL=null;
 
     public void init() throws IOException {
-
+        System.out.println("in init");
+        System.out.flush();
         BTClient client=new BTClient();
 
         //display local device address and name
@@ -27,6 +28,8 @@ public class BTClient implements DiscoveryListener {
         System.out.println("Address: "+localDevice.getBluetoothAddress());
         System.out.println("Name: "+localDevice.getFriendlyName());
 
+        System.out.println("created local device");
+        System.out.flush();
         //find devices
         DiscoveryAgent agent = localDevice.getDiscoveryAgent();
 
