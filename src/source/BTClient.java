@@ -22,6 +22,8 @@ public class BTClient implements DiscoveryListener {
     private static String connectionURL=null;
     private RemoteDevice remoteDevice;
     private DiscoveryAgent agent;
+    private StreamConnection streamConnection;
+    private DataOutputStream dataout;
 
     public void init() throws IOException {
         System.out.flush();
@@ -97,6 +99,11 @@ public class BTClient implements DiscoveryListener {
         } else {
             System.out.println("ConnectionURL: " + connectionURL);
         }
+        connectionURL = "btspp://00140305E912:1;authenticate=false;encrypt=false;master=false";
+        
+        //connect to the server
+        streamConnection=(StreamConnection)Connector.open(connectionURL);
+        dataout = streamConnection.openDataOutputStream();
     }//init
 
     //methods of DiscoveryListener
@@ -131,39 +138,9 @@ public class BTClient implements DiscoveryListener {
         }
     }//end method
     
-    /*public void btConnect(final ServiceRecord sr) {
-        Thread th = new Thread() {
-            public void run() {
-                System.out.println("BTMIDlet.btConnect.run()");
-                RemoteDevice rd = sr.getHostDevice();
-                String connectionURL = sr.getConnectionURL(ServiceRecord.NOAUTHENTICATE_NOENCRYPT, false);
-                try {
-                    System.out.println(
-                        "Connecting to " + rd.getFriendlyName(false));
-                    System.out.println(
-                        "Connecting to " + rd.getFriendlyName(false) + 
-                        ", " + connectionURL);
-                    StreamConnection streamConnection = (StreamConnection)Connector.open(connectionURL);
-                    DataOutputStream dataout = streamConnection.openDataOutputStream();
-                    dataout.writeUTF(messageOut);
-                    System.out.println("Closing");
-                    streamConnection.close();
-                } catch (IOException ioe) {
-                    System.out.println("BTMIDlet.btConnect, exception & + ioe");
-                }
-            }
-        };
-        th.start();
-    }*/
-    
     public boolean send(String toSend) {
         try {
-            //connect to the server and send a line of text
-            StreamConnection streamConnection=(StreamConnection)Connector.open(connectionURL);
-            DataOutputStream dataout = streamConnection.openDataOutputStream();
-            for(int i = 0; i < toSend.length(); i++) {
-                dataout.writeByte(Character.getNumericValue(toSend.charAt(i)));
-            }
+            dataout.writeBytes(toSend);
             System.out.println("Closing");
             streamConnection.close();
         } catch (IOException ex) {
