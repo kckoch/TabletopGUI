@@ -94,6 +94,8 @@ public class BTClient implements DiscoveryListener {
         if(connectionURL==null){
             System.out.println("Could not connect to device.");
             System.exit(0);
+        } else {
+            System.out.println("ConnectionURL: " + connectionURL);
         }
     }//init
 
@@ -159,7 +161,9 @@ public class BTClient implements DiscoveryListener {
             //connect to the server and send a line of text
             StreamConnection streamConnection=(StreamConnection)Connector.open(connectionURL);
             DataOutputStream dataout = streamConnection.openDataOutputStream();
-            dataout.writeBytes(toSend);
+            for(int i = 0; i < toSend.length(); i++) {
+                dataout.writeByte(Character.getNumericValue(toSend.charAt(i)));
+            }
             System.out.println("Closing");
             streamConnection.close();
         } catch (IOException ex) {

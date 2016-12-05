@@ -25,16 +25,16 @@ public class MiddlePaneController {
         xml = new XML();
         File xmlfile = new File("save.xml");
         if(xmlfile.exists()){
-            System.out.println("xml exists");
+            System.out.println("XML Exists");
             if(xml.readXML("save.xml")) {
-                System.out.println("we were able to read the xml");
+                System.out.println("We were able to read the XML.");
                 dungeon = xml.getDungeon();
             } else {
                 System.out.println("SOMETHING WENT WRONG WITH THE READ XML!!");
             }  
         } else {
             dungeon = new Dungeon("image.png");
-            System.out.println("need to create an xml");
+            System.out.println("Need to create an xml");
             xml.saveToXML("save.xml", dungeon);
         }
         
