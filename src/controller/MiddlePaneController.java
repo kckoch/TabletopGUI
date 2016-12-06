@@ -17,6 +17,7 @@ public class MiddlePaneController {
     private Dungeon dungeon;
     XML xml;
     BTClient client;
+    byte[][] arr;
     
     //This constructor will check to see if there is a dungeon saved in the xml.
     //If there is, it will read in that dungeon and all its information.
@@ -29,6 +30,7 @@ public class MiddlePaneController {
             if(xml.readXML("save.xml")) {
                 System.out.println("We were able to read the XML.");
                 dungeon = xml.getDungeon();
+                dungeon.createDoors();
             } else {
                 System.out.println("SOMETHING WENT WRONG WITH THE READ XML!!");
             }  
@@ -37,7 +39,6 @@ public class MiddlePaneController {
             System.out.println("Need to create an xml");
             xml.saveToXML("save.xml", dungeon);
         }
-        
         try {
             //p sure this doesn't work yet
             client = new BTClient();
@@ -116,16 +117,18 @@ public class MiddlePaneController {
         int xend = xstart+width;
         int yend = ystart+height;
 
-        byte[][] arr = new byte[12][12];
+        arr = new byte[12][12];
         
         for(int i = xstart; i <= xend; i++){
-            arr[ystart][i] = 1;
-            arr[yend][i] = 1;
+            arr[ystart][i] = 2;
+            arr[yend][i] = 2;
         }
         for(int i = ystart; i <= yend; i++) {
-            arr[i][xstart] = 1;
-            arr[i][xend] = 1;
+            arr[i][xstart] = 2;
+            arr[i][xend] = 2;
         }
+        
+        drawDoors(xstart, ystart, xend, yend, roomndx);
         
         for(int i = 0; i < 12; i++){
             for(int k = 0; k < 12; k++){
@@ -146,5 +149,60 @@ public class MiddlePaneController {
         }
         System.out.println(send);
         client.send(send);
+    }
+    
+    private void drawDoors(int xstart, int ystart, int xend, int yend, int roomndx) {
+        ArrayList<String> doors = dungeon.getRoom(roomndx).getDoors();
+        int N = 0;
+        int S = 0;
+        int E = 0;
+        int W = 0;
+        for(String door : doors) {
+            if(door.equals("NORTH"))
+                N++;
+            else if (door.equals("SOUTH"))
+                S++;
+            else if (door.equals("EAST"))
+                E++;
+            else
+                W++;
+        }
+        System.out.println(dungeon.getRoom(roomndx).getName()+" N: " + N + " S: " + S + " E: " + E + " W: " + W);
+        if(N == 1){
+            arr[ystart][(xstart+xend)/2 - 1] = 1;
+            arr[ystart][(xstart+xend)/2] = 1;
+        } else if (N == 2) {
+            arr[ystart][(xstart+xend)/4 - 1] = 1;
+            arr[ystart][(xstart+xend)/4] = 1;
+            arr[ystart][((xstart+xend)*3)/4 - 1] = 1;
+            arr[ystart][((xstart+xend)*3)/4] = 1;
+        }
+        if(S == 1){
+            arr[yend][(xstart+xend)/2 - 1] = 1;
+            arr[yend][(xstart+xend)/2] = 1;
+        } else if (S == 2) {
+            arr[yend][(xstart+xend)/4 - 1] = 1;
+            arr[yend][(xstart+xend)/4] = 1;
+            arr[yend][((xstart+xend)*3)/4 - 1] = 1;
+            arr[yend][((xstart+xend)*3)/4] = 1;
+        }
+        if(E == 1){
+            arr[(ystart+yend)/2 - 1][xend] = 1;
+            arr[(ystart+yend)/2][xend] = 1;
+        } else if (E == 2) {
+            arr[(ystart+yend)/4 - 1][xend] = 1;
+            arr[(ystart+yend)/4][xend] = 1;
+            arr[((ystart+yend)*3)/4 - 1][xend] = 1;
+            arr[((ystart+yend)*3)/4][xend] = 1;
+        }
+        if(W == 1){
+            arr[(ystart+yend)/2 - 1][xstart] = 1;
+            arr[(ystart+yend)/2][xstart] = 1;
+        } else if (W == 2) {
+            arr[(ystart+yend)/4 - 1][xstart] = 1;
+            arr[(ystart+yend)/4][xstart] = 1;
+            arr[((ystart+yend)*3)/4 - 1][xstart] = 1;
+            arr[((ystart+yend)*3)/4][xstart] = 1;
+        }
     }
 }

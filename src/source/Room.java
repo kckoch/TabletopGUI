@@ -36,6 +36,7 @@ public class Room {
         this.info = info;
         this.name = name;
         this.start = start;
+        this.doors = new ArrayList<String>();
     }
     
     public void setWdith(int width){
@@ -88,11 +89,18 @@ public class Room {
     
     @Override
     public String toString() {
-        String str = "x: " + x + "\ny: " + y + "\nwidth: " + width + "\nheight: " + height + "\ninfo: " + info;
+        String str = name + "\nx: " + x + "\ny: " + y + "\nwidth: " + width + "\nheight: " + height + "\ninfo: " + info + "\n";
+        for(String dir : doors) {
+            str += (dir + " "); 
+        }
         return(str);
     }
     
     public void addDoor(String direction) {
         doors.add(direction);
+    }
+    
+    public ArrayList<String> getDoors() {
+        return doors;
     }
 }

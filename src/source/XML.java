@@ -155,7 +155,7 @@ public class XML {
                 e = dom.createElement("start");
                 e.appendChild(dom.createTextNode("" + rm.getStart()));
                 rootEle.appendChild(e);
-
+                
                 dungroot.appendChild(rootEle);
             }
             ArrayList<Corridor> corr = dungeon.getCorrs();

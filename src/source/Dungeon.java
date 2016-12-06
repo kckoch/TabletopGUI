@@ -127,13 +127,27 @@ public class Dungeon {
         }
     }
     
-    private void createDoors() {
+    public void createDoors() {
         for(Room room : rooms) {
             for(Corridor corr : corrs) {
-                if(corr.getX() <= room.getX() && corr.getX() + corr.getWidth() >= room.getX()) {
-                    if(corr.getY() >= room.getY() && corr.getX() + corr.getHeight() <= room.getX()){
+                if(corr.getX() <= room.getX() && corr.getX() + corr.getWidth() >= room.getX() 
+                        && corr.getY() >= room.getY() && corr.getY() <= room.getY() + room.getHeight()) {
+                    room.addDoor("WEST");
+                    if(corr.getX() + corr.getWidth() > room.getX() + room.getWidth()) {
                         room.addDoor("EAST");
                     }
+                } else if(corr.getX() >= room.getX() && corr.getX() == room.getX() + room.getWidth() 
+                        && corr.getY() >= room.getY() && corr.getY() < room.getY() + room.getHeight()) {
+                    room.addDoor("EAST");
+                } else if (corr.getY() <= room.getY() && corr.getY() + corr.getHeight() >= room.getY()
+                        && corr.getX() >= room.getX() && corr.getX() <= room.getX() + room.getWidth()) {
+                    room.addDoor("NORTH");
+                    if(corr.getY() + corr.getHeight() > room.getY() + room.getHeight()) {
+                        room.addDoor("SOUTH");
+                    }
+                } else if (corr.getY() <= room.getY() + room.getHeight() && corr.getY() >= room.getY()
+                        && corr.getX() >= room.getX() && corr.getX() <= room.getX() + room.getWidth()){
+                    room.addDoor("SOUTH");
                 }
             }
         }
