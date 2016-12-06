@@ -99,7 +99,6 @@ public class BTClient implements DiscoveryListener {
         } else {
             System.out.println("ConnectionURL: " + connectionURL);
         }
-        connectionURL = "btspp://00140305E912:1;authenticate=false;encrypt=false;master=false";
         
         //connect to the server
         streamConnection=(StreamConnection)Connector.open(connectionURL);
